@@ -1,0 +1,31 @@
+--- berkeley-float-main/berkeley-softfloat-3/build/Linux-RISCV/Makefile	2022-02-10 10:52:32.897192417 +0100
++++ berkeley-float-main-patch/berkeley-softfloat-3/build/Linux-RISCV/Makefile	2022-02-10 10:52:00.522481692 +0100
+@@ -45,7 +45,7 @@
+ DELETE = rm -f
+ C_INCLUDES = -I. -I$(SOURCE_DIR)/$(SPECIALIZE_TYPE) -I$(SOURCE_DIR)/include
+ COMPILE_C = \
++  $(CC)  -march=rv32imafd -mabi=ilp32d  -c -Werror-implicit-function-declaration $(SOFTFLOAT_OPTS) \
+-  riscv64-unknown-elf-gcc  -march=rv32imafd -mabi=ilp32d  -c -Werror-implicit-function-declaration $(SOFTFLOAT_OPTS) \
+     $(C_INCLUDES) -O2 -o $@
+ MAKELIB = ar crs $@
+ 
+reverted:
+--- berkeley-float-main/berkeley-testfloat-3/build/Linux-RISCV/Makefile	2022-02-10 10:52:46.324657158 +0100
++++ berkeley-float-main-patch/berkeley-testfloat-3/build/Linux-RISCV/Makefile	2022-02-10 10:52:00.754472454 +0100
+@@ -54,13 +54,13 @@
+ C_INCLUDES = \
+   -I. -I$(SUBJ_SOURCE_DIR) -I$(SOURCE_DIR) -I$(SOFTFLOAT_INCLUDE_DIR)
+ COMPILE_C = \
++  $(CC) -march=rv32imafd -mabi=ilp32d  -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
+-  riscv64-unknown-elf-gcc -march=rv32imafd -mabi=ilp32d  -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
+     $(C_INCLUDES) -O2 -o $@
+ COMPILE_SLOWFLOAT_C = \
++  $(CC) -march=rv32imafd -mabi=ilp32d  -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
+-  riscv64-unknown-elf-gcc -march=rv32imafd -mabi=ilp32d  -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
+     $(C_INCLUDES) -O3 -o $@
+ MAKELIB = ar crs $@
++LINK = $(CC) -march=rv32imafd -mabi=ilp32d  -o $@
+-LINK = riscv64-unknown-elf-gcc -march=rv32imafd -mabi=ilp32d  -o $@
+ OTHER_LIBS = -lm
+ 
+ OBJ = .o
