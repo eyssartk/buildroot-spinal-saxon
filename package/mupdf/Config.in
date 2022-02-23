@@ -1,0 +1,9 @@
+config BR2_PACKAGE_MUPDF
+	bool "MUPDF"
+    select BR2_PACKAGE_JBIG2DEC 
+    select BR2_PACKAGE_LIBJPEG 
+    select BR2_PACKAGE_OPENJPEG 
+    select BR2_PACKAGE_LIBZLIB
+	help
+	  MUPDF package.
+

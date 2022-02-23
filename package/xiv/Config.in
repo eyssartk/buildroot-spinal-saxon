@@ -1,0 +1,5 @@
+config BR2_PACKAGE_XIV
+	bool "XIV"
+	help
+	  XIV package.
+

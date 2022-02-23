@@ -9,6 +9,11 @@ source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/alsaplayer/Config.in"
 source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/xfe/Config.in"
 source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/fbdoom/Config.in"
 source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/gpio-interrupt/Config.in"
+source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/xpdf/Config.in"
+source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/fbpdf/Config.in"
+source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/mupdf/Config.in"
+source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/lcms2_2_13/Config.in"
+source "$BR2_EXTERNAL_SPINAL_SAXON_PATH/package/xiv/Config.in"
 
 config BR2_PACKAGE_VEXRISCV_AES
 	bool "VexRiscv AES custom instruction"

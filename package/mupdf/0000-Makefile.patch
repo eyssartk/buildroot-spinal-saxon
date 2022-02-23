@@ -1,0 +1,38 @@
+diff --git a/Makefile b/mupdf-1.19.0/Makefile
+index 6797bf1..7fa74b3 100644
+--- a/Makefile
++++ b/mupdf-1.19.0/Makefile
+@@ -21,8 +21,8 @@ include Makethird
+ # Do not specify CFLAGS or LIBS on the make invocation line - specify
+ # XCFLAGS or XLIBS instead. Make ignores any lines in the makefile that
+ # set a variable that was set on the command line.
+-CFLAGS += $(XCFLAGS) -Iinclude
+-LIBS += $(XLIBS) -lm
++XCFLAGS += $(CFLAGS) -Iinclude
++XLIBS += $(LIBS) -lm
+ 
+ ifneq ($(threading),no)
+   ifeq ($(HAVE_PTHREAD),yes)
+@@ -54,8 +54,8 @@ ifneq ($(verbose),yes)
+ endif
+ 
+ MKTGTDIR = mkdir -p $(dir $@)
+-CC_CMD = $(QUIET_CC) $(MKTGTDIR) ; $(CC) $(CFLAGS) -MMD -MP -o $@ -c $<
+-CXX_CMD = $(QUIET_CXX) $(MKTGTDIR) ; $(CXX) $(CFLAGS) $(XCXXFLAGS) -MMD -MP -o $@ -c $<
++CC_CMD = $(QUIET_CC) $(MKTGTDIR) ; $(CC) $(XCFLAGS) -MMD -MP -o $@ -c $<
++CXX_CMD = $(QUIET_CXX) $(MKTGTDIR) ; $(CXX) $(XCFLAGS) $(XCXXFLAGS) -MMD -MP -o $@ -c $<
+ AR_CMD = $(QUIET_AR) $(MKTGTDIR) ; $(AR) cr $@ $^
+ ifdef RANLIB
+   RANLIB_CMD = $(QUIET_RANLIB) $(RANLIB) $@
+@@ -361,9 +360,9 @@ endif
+ examples: $(OUT)/example $(OUT)/multi-threaded
+ 
+ $(OUT)/example: docs/examples/example.c $(MUPDF_LIB) $(THIRD_LIB)
+-	$(LINK_CMD) $(CFLAGS) $(THIRD_LIBS)
++	$(LINK_CMD) $(XCFLAGS) $(THIRD_LIBS)
+ $(OUT)/multi-threaded: docs/examples/multi-threaded.c $(MUPDF_LIB) $(THIRD_LIB)
+-	$(LINK_CMD) $(CFLAGS) $(THIRD_LIBS) -lpthread
++	$(LINK_CMD) $(XCFLAGS) $(THIRD_LIBS) -lpthread
+ 
+ # --- Update version string header ---
+ 

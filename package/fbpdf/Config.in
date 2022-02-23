@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FBPDF
+	bool "FBPDF"
+	help
+	  FBPDF package.
+
