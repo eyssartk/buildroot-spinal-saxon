@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Starts WindowMaker
+#
+
+BIN=/usr/bin/wmaker
+PIDFILE=/var/run/wmaker.pid
+
+start() {
+	printf "Starting WindoMaker: "
+	DISPLAY=:0 start-stop-daemon -S -b -q -m -p $PIDFILE --exec $BIN
+	[ $? = 0 ] && sleep 3 && echo "OK" || echo "FAIL"
+}
+
+stop() {
+	printf "Stopping WindowMaker: "
+	start-stop-daemon -K -q -p $PIDFILE
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+restart() {
+	stop
+	sleep 2
+	start
+}
+
+case "$1" in
+	start)
+		start
+	;;
+	stop)
+		stop
+	;;
+	restart|reload)
+		restart
+	;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
